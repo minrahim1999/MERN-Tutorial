@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -9,7 +10,15 @@ app.use(express.json())
 app.use(cors())
 
 mongoose.connect(
-  'mongodb+srv://MinRahim:Mu%40511910@merncluster.bazdvbi.mongodb.net/merntutorial?retryWrites=true&w=majority'
+  'mongodb+srv://' +
+    process.env.USER_NAME +
+    ':' +
+    process.env.USER_PASS +
+    '@' +
+    process.env.USER_CLUSTER +
+    '.bazdvbi.mongodb.net/' +
+    process.env.USER_DATABASE +
+    '?retryWrites=true&w=majority'
 )
 
 app.get('/getUsers', (req, res) => {
